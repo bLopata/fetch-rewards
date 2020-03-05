@@ -1,5 +1,7 @@
-<p>Count: {count}</p>
-<button on:click='set({ count: count + 1 })'>+1</button>
+
+<button on:click={add}>
+	Add new
+</button>
 
 <!-- Default data -->
 <script>
@@ -18,14 +20,7 @@
 		return Object.keys(counts).length
   }
 
-  export default {
-    data () {
-      return {
-        count: 0,
-      };
-    }
-  };
-  var remaining = countEmails(emails)
+ let remaining = countEmails(emails)
 </script>
 
 <!-- Include styles -->
@@ -34,21 +29,11 @@
     font-family: Lato;
   }
 </style>
-<p>There are {remaining} unique email addresses in the list.</p>
 
-<h1>Todos</h1>
 
-{#each emails as email}
-	<div>
-		<input
-			placeholder="What needs to be done?"
-			bind:value={email}
-		>
-	</div>
-{/each}
 
- <!-- <script>
-
+ <!--  WORKING IN SVELTE.DEV
+ <script>
   let emails = ["test.email@gmail.com", "test.email+spam@gmail.com", "testemail@gmail.com", "test.email+@gmail.com", "test.e.mail+SPAM@gmail.com"];
 
 	function add() {
@@ -72,7 +57,9 @@
 </script>
 
 <style>
-
+	input {
+		width: 50%
+	}
 </style>
 
 <h1>Todos</h1>
@@ -90,5 +77,7 @@
 
 <button on:click={add}>
 	Add new
-</button> -->
+</button>
+
+ -->
 
