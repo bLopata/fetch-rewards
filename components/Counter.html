@@ -1,0 +1,94 @@
+<p>Count: {count}</p>
+<button on:click='set({ count: count + 1 })'>+1</button>
+
+<!-- Default data -->
+<script>
+ let emails = ["test.email@gmail.com", "test.email+spam@gmail.com", "testemail@gmail.com", "test.email+@gmail.com", "test.e.mail+SPAM@gmail.com"];
+  function countEmails(emailList) {
+    var counts = {};
+    for(let email of emailList){
+      while(email.indexOf(".") < email.indexOf("@")){
+        email = email.replace(".", "")
+      }
+      if(email.includes("+")){
+        email = email.replace(/(\+[a-z]{0,})/gi, "")
+      }
+      counts[email] = 1 + (counts[email] || 0);
+    }
+		return Object.keys(counts).length
+  }
+
+  export default {
+    data () {
+      return {
+        count: 0,
+      };
+    }
+  };
+  var remaining = countEmails(emails)
+</script>
+
+<!-- Include styles -->
+<style>
+  p, button {
+    font-family: Lato;
+  }
+</style>
+<p>There are {remaining} unique email addresses in the list.</p>
+
+<h1>Todos</h1>
+
+{#each emails as email}
+	<div>
+		<input
+			placeholder="What needs to be done?"
+			bind:value={email}
+		>
+	</div>
+{/each}
+
+ <!-- <script>
+
+  let emails = ["test.email@gmail.com", "test.email+spam@gmail.com", "testemail@gmail.com", "test.email+@gmail.com", "test.e.mail+SPAM@gmail.com"];
+
+	function add() {
+		emails = emails.concat("test.email@gmail.com");
+	} 
+
+  function countEmails(emails) {
+    var counts = {};
+    for(let email of emails){
+      while(email.indexOf(".") < email.indexOf("@")){
+        email = email.replace(".", "")
+      }
+      if(email.includes("+")){
+        email = email.replace(/(\+[a-z]{0,})/gi, "")
+      }
+      counts[email] = 1 + (counts[email] || 0);
+    }
+		return Object.keys(counts).length
+  }
+	$: remaining = countEmails(emails)
+</script>
+
+<style>
+
+</style>
+
+<h1>Todos</h1>
+
+{#each emails as email}
+	<div>
+		<input
+			placeholder="What needs to be done?"
+			bind:value={email}
+		>
+	</div>
+{/each}
+
+<p>There are {remaining} unique email addresses in the list.</p>
+
+<button on:click={add}>
+	Add new
+</button> -->
+
